@@ -203,7 +203,7 @@ function generateCard() {
 }
 
 let currentBoard = [];
-let hasBingo = false;
+let bingoAchieved = false;
 
 const boardEl = document.getElementById("bingo-board");
 const newCardBtn = document.getElementById("new-card-btn");
@@ -217,7 +217,7 @@ const confettiContainer = document.getElementById("confetti");
 function renderBoard() {
   boardEl.innerHTML = "";
   boardEl.classList.remove("won");
-  hasBingo = false;
+  bingoAchieved = false;
 
   currentBoard.forEach((cell, index) => {
     const div = document.createElement("div");
@@ -251,7 +251,8 @@ function toggleCell(index) {
     cells[index].classList.remove("marked");
   }
 
-  if (cell.marked && checkBingo()) {
+  if (cell.marked && checkBingo() && !bingoAchieved) {
+    bingoAchieved = true;
     triggerBingo();
   }
 }
@@ -281,7 +282,6 @@ function checkBingo() {
 }
 
 function triggerBingo() {
-  hasBingo = true;
   createConfetti();
   overlay.classList.remove("hidden");
 }
@@ -313,7 +313,6 @@ function newCard() {
 function dismissBingo() {
   overlay.classList.add("hidden");
   confettiContainer.innerHTML = "";
-  hasBingo = false;
 }
 
 // Wire up
