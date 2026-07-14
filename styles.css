@@ -76,6 +76,9 @@ h1 {
   letter-spacing: 0.02em;
 }
 
+a {
+  color: var(--accent);
+}
 /* Controls */
 .controls {
   display: flex;
