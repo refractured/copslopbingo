@@ -238,7 +238,6 @@ function renderBoard() {
 }
 
 function toggleCell(index) {
-  if (hasBingo) return;
   const cell = currentBoard[index];
   if (cell.free) return;
 
@@ -283,7 +282,6 @@ function checkBingo() {
 
 function triggerBingo() {
   hasBingo = true;
-  boardEl.classList.add("won");
   createConfetti();
   overlay.classList.remove("hidden");
 }
@@ -312,9 +310,15 @@ function newCard() {
   renderBoard();
 }
 
+function dismissBingo() {
+  overlay.classList.add("hidden");
+  confettiContainer.innerHTML = "";
+  hasBingo = false;
+}
+
 // Wire up
 newCardBtn.addEventListener("click", newCard);
-playAgainBtn.addEventListener("click", newCard);
+playAgainBtn.addEventListener("click", dismissBingo);
 
 howToBtn.addEventListener("click", () => howToEl.classList.toggle("hidden"));
 closeHowTo.addEventListener("click", () => howToEl.classList.add("hidden"));
