@@ -171,7 +171,8 @@ const EVENTS = [
   "Arresting me for no reason",
   "Cuffs are too tight",
   "Call Chris Pratt",
-  "Fat"
+  "Fat",
+  "Wig/Hair falls off"
   
 ];
 
