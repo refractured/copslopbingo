@@ -1,4 +1,4 @@
-// Cop Sloop Bingo - Bodycam Edition
+// Cop Slop Bingo - Bodycam Edition
 // Lightweight vanilla JS. No deps. Large randomized pool.
 
 const EVENTS = [
@@ -176,7 +176,33 @@ const EVENTS = [
   
 ];
 
-// Fisher-Yates shuffle
+// --- Seeded RNG for deterministic daily cards ---
+function mulberry32(a) {
+  return function() {
+    let t = a += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function seededShuffle(array, seed) {
+  const random = mulberry32(seed);
+  const a = [...array];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// UTC-based daily seed so every viewer worldwide gets the same card on the same calendar day
+function getDailySeed() {
+  const now = new Date();
+  return now.getUTCFullYear() * 10000 + (now.getUTCMonth() + 1) * 100 + now.getUTCDate();
+}
+
+// Fisher-Yates shuffle (true random)
 function shuffle(array) {
   const a = [...array];
   for (let i = a.length - 1; i > 0; i--) {
@@ -186,11 +212,7 @@ function shuffle(array) {
   return a;
 }
 
-function generateCard() {
-  // Unique selection of 24 from the large pool
-  const shuffled = shuffle(EVENTS);
-  const selected = shuffled.slice(0, 24);
-
+function buildBoard(selected) {
   const board = [];
   let idx = 0;
   for (let i = 0; i < 25; i++) {
@@ -203,10 +225,24 @@ function generateCard() {
   return board;
 }
 
+function generateDailyCard() {
+  const seed = getDailySeed();
+  const shuffled = seededShuffle(EVENTS, seed);
+  const selected = shuffled.slice(0, 24);
+  return buildBoard(selected);
+}
+
+function generateRandomCard() {
+  const shuffled = shuffle(EVENTS);
+  const selected = shuffled.slice(0, 24);
+  return buildBoard(selected);
+}
+
 let currentBoard = [];
 let bingoAchieved = false;
 
 const boardEl = document.getElementById("bingo-board");
+const dailyCardBtn = document.getElementById("daily-card-btn");
 const newCardBtn = document.getElementById("new-card-btn");
 const howToBtn = document.getElementById("how-to-btn");
 const howToEl = document.getElementById("how-to");
@@ -304,10 +340,17 @@ function createConfetti() {
   }
 }
 
-function newCard() {
+function showDailyCard() {
   overlay.classList.add("hidden");
   confettiContainer.innerHTML = "";
-  currentBoard = generateCard();
+  currentBoard = generateDailyCard();
+  renderBoard();
+}
+
+function showRandomCard() {
+  overlay.classList.add("hidden");
+  confettiContainer.innerHTML = "";
+  currentBoard = generateRandomCard();
   renderBoard();
 }
 
@@ -317,11 +360,12 @@ function dismissBingo() {
 }
 
 // Wire up
-newCardBtn.addEventListener("click", newCard);
+dailyCardBtn.addEventListener("click", showDailyCard);
+newCardBtn.addEventListener("click", showRandomCard);
 playAgainBtn.addEventListener("click", dismissBingo);
 
 howToBtn.addEventListener("click", () => howToEl.classList.toggle("hidden"));
 closeHowTo.addEventListener("click", () => howToEl.classList.add("hidden"));
 
-// Boot
-newCard();
+// Boot: Daily Card is the default so the whole chat sees the same board
+showDailyCard();
