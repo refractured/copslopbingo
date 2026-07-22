@@ -1,4 +1,4 @@
-// Cop Slop Bingo - Bodycam Edition
+// Cop Slop Bingo - Asmongold / ZackRawrr Bodycam Edition
 // Lightweight vanilla JS. No deps. Large randomized pool.
 
 const EVENTS = [
@@ -325,17 +325,30 @@ function triggerBingo() {
 
 function createConfetti() {
   confettiContainer.innerHTML = "";
-  const colors = ["#00e5ff", "#ff3d71", "#ffd600", "#00e676", "#ff9100", "#e040fb", "#ffffff"];
-  for (let i = 0; i < 90; i++) {
+  const emojis = ["🚓", "🚨", "👮", "🔦", "🚔", "🚨", "🚓", "👮‍♂️", "🔦"];
+  const colors = ["#00a8ff", "#ff2a2a", "#ffd600", "#ffffff", "#00a8ff", "#ff2a2a"];
+
+  // 70 particles total - mix of emojis and colored dots
+  for (let i = 0; i < 70; i++) {
     const el = document.createElement("div");
     el.className = "confetti";
     el.style.left = Math.random() * 100 + "%";
-    el.style.background = colors[Math.floor(Math.random() * colors.length)];
-    el.style.width = (5 + Math.random() * 9) + "px";
-    el.style.height = (5 + Math.random() * 9) + "px";
-    el.style.borderRadius = Math.random() > 0.4 ? "50%" : "1px";
-    el.style.animationDuration = (2.2 + Math.random() * 2.8) + "s";
-    el.style.animationDelay = (Math.random() * 0.9) + "s";
+    el.style.animationDuration = (2.0 + Math.random() * 2.8) + "s";
+    el.style.animationDelay = (Math.random() * 0.85) + "s";
+
+    if (i % 3 === 0) {
+      // emoji
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.fontSize = (0.9 + Math.random() * 0.7) + "rem";
+    } else {
+      // colored dot
+      el.classList.add("dot");
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      el.style.width = (6 + Math.random() * 8) + "px";
+      el.style.height = el.style.width;
+      el.style.borderRadius = Math.random() > 0.35 ? "50%" : "2px";
+    }
+
     confettiContainer.appendChild(el);
   }
 }
