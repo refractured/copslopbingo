@@ -1,4 +1,4 @@
-/* Cop Slop Chase Bingo - Smoke-n-Scan Edition */
+/* Cop Sloop Chase Bingo - Smoke-n-Scan Edition */
 
 :root {
   --bg: #070a12;
@@ -51,7 +51,7 @@ body {
   gap: 0.9rem;
 }
 
-/* ===== Banner with buttons pinned to bottom ===== */
+/* ===== Banner (image only) ===== */
 .top {
   position: relative;
   border-radius: 14px;
@@ -61,11 +61,7 @@ body {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  padding: 1.1rem 1rem 1.15rem;
   min-height: 190px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   box-shadow: 0 4px 24px rgba(0,0,0,0.45);
   border: 1px solid var(--border);
 }
@@ -76,24 +72,19 @@ body {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(7, 10, 18, 0.25) 0%,
-    rgba(7, 10, 18, 0.20) 45%,
-    rgba(7, 10, 18, 0.55) 100%
+    rgba(7, 10, 18, 0.15) 0%,
+    rgba(7, 10, 18, 0.10) 50%,
+    rgba(7, 10, 18, 0.35) 100%
   );
   pointer-events: none;
   z-index: 0;
-}
-
-.top > * {
-  position: relative;
-  z-index: 1;
 }
 
 a {
   color: var(--cop-blue);
 }
 
-/* Controls */
+/* Controls — below bingo board */
 .controls {
   display: flex;
   gap: 0.6rem;
@@ -130,10 +121,9 @@ a {
 }
 
 .btn.secondary {
-  background: rgba(15, 20, 32, 0.75);
+  background: var(--surface);
   color: var(--text);
-  border: 1px solid rgba(255,255,255,0.18);
-  backdrop-filter: blur(4px);
+  border: 1px solid var(--border);
 }
 
 .btn.secondary:hover {
@@ -491,7 +481,6 @@ a {
   }
   .top {
     min-height: 150px;
-    padding: 0.85rem 0.75rem 0.9rem;
   }
   .cell {
     font-size: 0.52rem;
