@@ -70,7 +70,6 @@ body {
   border: 1px solid var(--border);
 }
 
-/* Soft dark overlay — keeps buttons readable while logo & scene stay visible */
 .top::before {
   content: "";
   position: absolute;
@@ -237,7 +236,6 @@ a {
   transform: scale(0.96);
 }
 
-/* FREE center */
 .cell.free {
   background: linear-gradient(145deg, #0a1a3a, #0d2248);
   border-color: var(--cop-blue);
@@ -263,7 +261,6 @@ a {
   text-shadow: 0 1px 3px rgba(0,0,0,0.8), 0 0 8px rgba(255, 214, 0, 0.5);
 }
 
-/* Marked - red/blue cop light theme */
 .cell.marked {
   background: linear-gradient(145deg, #4a0a0a, #6b1010);
   border-color: var(--cop-red);
@@ -293,7 +290,6 @@ a {
   text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 
-/* BINGO headers */
 .bingo-headers {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -317,10 +313,70 @@ a {
   color: var(--muted);
   font-size: 0.72rem;
   padding-top: 0.35rem;
-  opacity: 0.85;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
 }
 
-/* ===== Overlay + Confetti + Cop Lights ===== */
+.theme-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.theme-btn {
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(15, 20, 32, 0.85);
+  color: var(--text);
+  font-size: 0.7rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  padding: 0;
+}
+
+.theme-btn:hover {
+  border-color: var(--cop-blue);
+  color: var(--cop-blue);
+  box-shadow: 0 0 10px rgba(0, 168, 255, 0.25);
+}
+
+.theme-btn.playing {
+  border-color: var(--cop-red);
+  color: var(--cop-red);
+  box-shadow: 0 0 10px rgba(255, 42, 42, 0.3);
+}
+
+.theme-download {
+  color: var(--cop-blue);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.theme-download:hover {
+  text-decoration: underline;
+}
+
+.kofi-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #ff5e5b;
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+
+/* Overlay + Confetti + Cop Lights */
 .overlay {
   position: fixed;
   inset: 0;
@@ -337,7 +393,6 @@ a {
   display: none;
 }
 
-/* Flashing cop lights on the overlay */
 .overlay::before {
   content: "";
   position: absolute;
@@ -397,7 +452,6 @@ a {
   font-weight: 500;
 }
 
-/* Confetti */
 .confetti-container {
   position: absolute;
   inset: 0;
@@ -430,7 +484,6 @@ a {
   }
 }
 
-/* Responsive - keep banner height on mobile too */
 @media (max-width: 480px) {
   .app {
     padding: 0.5rem 0.5rem 1.25rem;
