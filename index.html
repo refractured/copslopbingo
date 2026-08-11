@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cop Slop Bingo</title>
-  <meta name="description" content="Cop Slop Bingo is an interactive bingo game to play while watching law enforcement bodycam videos and streamer reactions from creators like Asmongold. Mark events in real-time for fun engagement during streams.">
-  <meta property="og:title" content="Cop Slop Bingo">
-  <meta property="og:description" content="Cop Slop Bingo is an interactive bingo game to play while watching law enforcement bodycam videos and streamer reactions from creators like Asmongold. Mark events in real-time for fun engagement during streams.">
+  <title>Cop Slop Chase Bingo</title>
+  <meta name="description" content="Cop Slop Chase Bingo — play along live police chases with Smoke-n-Scan. Mark vehicles, events, and endings in real time during the stream.">
+  <meta property="og:title" content="Cop Slop Chase Bingo">
+  <meta property="og:description" content="Cop Slop Chase Bingo — play along live police chases with Smoke-n-Scan. Mark vehicles, events, and endings in real time during the stream.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Cop Slop Bingo">
-  <meta name="twitter:description" content="Cop Slop Bingo is an interactive bingo game to play while watching law enforcement bodycam videos and streamer reactions from creators like Asmongold. Mark events in real-time for fun engagement during streams.">
+  <meta name="twitter:title" content="Cop Sloop Chase Bingo">
+  <meta name="twitter:description" content="Cop Sloop Chase Bingo — play along live police chases with Smoke-n-Scan. Mark vehicles, events, and endings in real time during the stream.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="app">
     <div class="top">
       <header>
-        <h1>COP SLOP BINGO</h1>
-        <p class="tagline">Bodycam Edition · Tick the disorder</p>
+        <h1>COP SLOP CHASE</h1>
+        <p class="tagline">Smoke-n-Scan Edition · Live Chase Bingo</p>
       </header>
 
       <div class="controls">
@@ -31,13 +31,13 @@
     <div id="how-to" class="how-to hidden">
       <h3>How to Play</h3>
       <ol>
-        <li>Watch bodycam / arrest footage on stream with <a href="https://www.twitch.tv/zackrawrr" target=_blank >ZackRawrr</a>.</li>
+        <li>Watch live police chases with <a href="https://www.twitch.tv/smokenscan" target="_blank">Smoke-n-Scan</a>.</li>
         <li>Everyone starts on the same <strong>Daily Card</strong> so the whole chat can play along together.</li>
-        <li>Click a square when that event happens.</li>
+        <li>Click a square when that vehicle, event, or ending happens.</li>
         <li>Get 5 in a row (horizontal, vertical, or diagonal) including FREE → BINGO!</li>
         <li>Want your own board? Hit "New Random Card". Switch back anytime with "Daily Card".</li>
       </ol>
-      <p class="tip">Center FREE is always marked. Play along live. First to bingo wins chud bragging rights.</p>
+      <p class="tip">Center FREE is always marked. Play along live. First to bingo wins bragging rights.</p>
       <button id="close-how-to" class="btn secondary small">Got it</button>
     </div>
 
@@ -47,7 +47,7 @@
     <div id="bingo-board" class="bingo-board" aria-label="Bingo card"></div>
 
     <div class="footer">
-      <span>Cop Slop · Daily shared card · Pure CSS + JS · No tracking</span><br>
+      <span>Cop Slop Chase · Daily shared card · Pure CSS + JS · No tracking</span><br>
       <a href="https://ko-fi.com/nowteslafy" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #ff5e5b; text-decoration: none;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
@@ -66,7 +66,7 @@
     <div class="confetti-container" id="confetti"></div>
     <div class="bingo-message">
       <div class="bingo-text">BINGO!</div>
-      <p class="bingo-sub">You called it. What a piece of shit!</p>
+      <p class="bingo-sub">You got 'em Billy!</p>
       <button id="play-again-btn" class="btn primary large">It's Obvious</button>
     </div>
   </div>
