@@ -1,4 +1,4 @@
-// Cop Slop Chase Bingo - Smoke-n-Scan Edition
+// Cop Sloop Chase Bingo - Smoke-n-Scan Edition
 // Lightweight vanilla JS. No deps. Live chase pool.
 
 const EVENTS = [
@@ -115,6 +115,8 @@ const closeHowTo = document.getElementById("close-how-to");
 const overlay = document.getElementById("bingo-overlay");
 const playAgainBtn = document.getElementById("play-again-btn");
 const confettiContainer = document.getElementById("confetti");
+const themeAudio = document.getElementById("sns-theme");
+const themeToggle = document.getElementById("theme-toggle");
 
 function renderBoard() {
   boardEl.innerHTML = "";
@@ -145,7 +147,6 @@ function toggleCell(index) {
 
   cell.marked = !cell.marked;
 
-  // Update only the class of this cell for performance + keep state
   const cells = boardEl.querySelectorAll(".cell");
   if (cell.marked) {
     cells[index].classList.add("marked");
@@ -163,11 +164,9 @@ function checkBingo() {
   const size = 5;
   const marked = currentBoard.map(c => c.marked);
 
-  // Rows
   for (let r = 0; r < size; r++) {
     if (marked.slice(r * size, r * size + size).every(Boolean)) return true;
   }
-  // Columns
   for (let c = 0; c < size; c++) {
     let ok = true;
     for (let r = 0; r < size; r++) {
@@ -175,9 +174,7 @@ function checkBingo() {
     }
     if (ok) return true;
   }
-  // Main diagonal
   if ([0, 6, 12, 18, 24].every(i => marked[i])) return true;
-  // Anti diagonal
   if ([4, 8, 12, 16, 20].every(i => marked[i])) return true;
 
   return false;
@@ -193,7 +190,6 @@ function createConfetti() {
   const emojis = ["🚓", "🚨", "🚗", "🚔", "💨", "🐕", "🛑", "⛽", "💥"];
   const colors = ["#00a8ff", "#ff2a2a", "#ffd600", "#ffffff", "#00a8ff", "#ff2a2a"];
 
-  // 70 particles total - mix of emojis and colored dots
   for (let i = 0; i < 70; i++) {
     const el = document.createElement("div");
     el.className = "confetti";
@@ -202,11 +198,9 @@ function createConfetti() {
     el.style.animationDelay = (Math.random() * 0.85) + "s";
 
     if (i % 3 === 0) {
-      // emoji
       el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
       el.style.fontSize = (0.9 + Math.random() * 0.7) + "rem";
     } else {
-      // colored dot
       el.classList.add("dot");
       el.style.background = colors[Math.floor(Math.random() * colors.length)];
       el.style.width = (6 + Math.random() * 8) + "px";
@@ -237,13 +231,43 @@ function dismissBingo() {
   confettiContainer.innerHTML = "";
 }
 
+function setThemePlaying(playing) {
+  if (playing) {
+    themeToggle.textContent = "⏸";
+    themeToggle.setAttribute("aria-label", "Pause SNS theme");
+    themeToggle.title = "Pause SNS theme";
+    themeToggle.classList.add("playing");
+  } else {
+    themeToggle.textContent = "▶";
+    themeToggle.setAttribute("aria-label", "Play SNS theme");
+    themeToggle.title = "Play SNS theme";
+    themeToggle.classList.remove("playing");
+  }
+}
+
+function toggleTheme() {
+  if (themeAudio.paused) {
+    themeAudio.play().then(() => setThemePlaying(true)).catch(() => {
+      // Autoplay blocked or file missing — reset UI
+      setThemePlaying(false);
+    });
+  } else {
+    themeAudio.pause();
+    setThemePlaying(false);
+  }
+}
+
 // Wire up
 dailyCardBtn.addEventListener("click", showDailyCard);
 newCardBtn.addEventListener("click", showRandomCard);
 playAgainBtn.addEventListener("click", dismissBingo);
-
 howToBtn.addEventListener("click", () => howToEl.classList.toggle("hidden"));
 closeHowTo.addEventListener("click", () => howToEl.classList.add("hidden"));
+themeToggle.addEventListener("click", toggleTheme);
+themeAudio.addEventListener("ended", () => setThemePlaying(false));
+themeAudio.addEventListener("pause", () => {
+  if (themeAudio.currentTime === 0 || themeAudio.ended) setThemePlaying(false);
+});
 
 // Boot: Daily Card is the default so the whole chat sees the same board
 showDailyCard();
