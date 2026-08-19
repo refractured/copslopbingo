@@ -2,8 +2,8 @@
 // Lightweight vanilla JS. No deps. Large randomized pool.
 
 const EVENTS = [
-  // From original sample PDF (cleaned)
-
+  // Basic events
+  
   "DWI",
   "Family Violence",
   "Major Collision (EMS)",
@@ -146,7 +146,9 @@ const EVENTS = [
   "All for a noise complaint",
   "All for a broken taillight",
   "All for expired tags",
+  
   //Asmongold
+  
   "Goylooping",
   "Didn't do nuffin",
   "Dont touch me",
@@ -172,7 +174,11 @@ const EVENTS = [
   "Cuffs are too tight",
   "Call Chris Pratt",
   "Fat",
-  "Wig/Hair falls off"
+  "Wig/Hair falls off",
+
+  //Ko-fi requests
+  
+  "Indian gas station"
   
 ];
 
