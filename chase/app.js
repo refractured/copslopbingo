@@ -17,19 +17,22 @@ const EVENTS = [
   "Smashes multiple cars",
   "Passenger bails",
   "Restricted Airspace",
-  "Stop and Go",
+  "Slow-speed chase",
   "Stops for Gas",
   "Wrong side of road",
+  "Citizen Hero",
 
   // SNS
   "Duke Boy",
   "The Professor",
   "Martinez Shoutout",
   "The Fig",
+  "Trees in the way",
 
   // Suspect
   "ADW Suspect",
   "Murder Suspect",
+  "Burglary Suspect",
 
   // End of Chase
   "Suspect Runs",
@@ -38,6 +41,7 @@ const EVENTS = [
   "Ends in a crash",
   "K-9 used",
   "Dogpile perp",
+  "Parking Structure",
   "Bearcats called in"
 ];
 
