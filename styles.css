@@ -62,7 +62,7 @@ body {
   background-position: center 20%;
   background-repeat: no-repeat;
   padding: 1.1rem 1rem 1.15rem;
-  min-height: 140px;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -462,7 +462,7 @@ a {
     gap: 0.7rem;
   }
   .top {
-    min-height: 0;
+    min-height: 120px;
     padding: 0.85rem 0.75rem 0.9rem;
   }
   .cell {
