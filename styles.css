@@ -462,7 +462,7 @@ a {
     gap: 0.7rem;
   }
   .top {
-    min-height: 300px;
+    min-height: 250px;
     padding: 0.85rem 0.75rem 0.9rem;
   }
   .cell {
