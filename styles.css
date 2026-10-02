@@ -455,14 +455,14 @@ a {
   }
 }
 
-/* Responsive - preserve vertical compactness on mobile */
+/* Responsive — phones only. Taller banner clears a typical iOS PiP window. */
 @media (max-width: 480px) {
   .app {
     padding: 0.5rem 0.5rem 1.25rem;
     gap: 0.7rem;
   }
   .top {
-    min-height: 120px;
+    min-height: 300px;
     padding: 0.85rem 0.75rem 0.9rem;
   }
   .cell {
